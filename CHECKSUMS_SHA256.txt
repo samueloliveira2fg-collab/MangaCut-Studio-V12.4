@@ -1,0 +1,15 @@
+SHA-256 dos arquivos externos de envio (para verificar integridade):
+
+MangaCut_Studio_V12_4_TRANSFORM_TOOLS_FIX.zip
+67a6586d48079c06194818ad8333c9f3ce678bc1078c6647795ffef41627dac9
+
+MangaCut_PSD_Acervo_01_de_03.zip
+2cddaf8ed484001783a8253ebdd73c7598e84f8704120228dd94065e4193eaed
+
+MangaCut_PSD_Acervo_02_de_03.zip
+cdfaee826dc05039977e10dca3c8aa4029b4902e89dffa790f2ac6f30b1d5bc2
+
+MangaCut_PSD_Acervo_03_de_03.zip
+50d50eae561f3652c82b7a1bc17ce12154852be59a5b07022f041c848a7293a9
+
+Observação: o ZIP-base contém este arquivo de checksums; por isso ele não lista seu próprio hash (evita autorreferência).
