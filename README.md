@@ -4,111 +4,78 @@ Arquivo histórico do MangaCut Studio V12.4.
 
 ---
 
-## Descrição
+## Finalidade
 
-O **MangaCut Studio V12.4** é uma ferramenta de edição de imagens e mangá, focada em ferramentas de transformação geométrica e integração com modelos de segmentação de anime via inteligência artificial. Este repositório serve como arquivo histórico do projeto.
+Arquivo histórico público para consulta e continuação.
 
----
-
-## Status da Versão V12.4
-
-**Versão:** V12.4 — **Transform Tools Fix**  
-**Status:** Estável
-
-### Resumo
-
-- Correção das ferramentas de transformação geométrica (rotação, escalonamento, espelhamento, distorção).
-- Integração com **SkyTNT Anime Segmentation / ISNet** via ONNX Runtime e FastAPI.
-- Processamento de arquivos PSD com suporte a camadas e grupos.
-- Pipeline de testes com 54 arquivos PSD.
+**Status:** V12.4 — Transform Tools Fix
 
 ---
 
-## Navegação por Documentação
+## Arquivo ZIP Principal
 
-| Seção | Descrição |
-|-------|-----------|
-| [01-PROJETO](01-PROJETO/README.md) | Visão geral do projeto, status V12.4, créditos e limitações |
-| [02-DOCUMENTACAO](02-DOCUMENTACAO/README.md) | Histórico de versões, funcionalidades, limitações e pendências |
-| [03-ACERVO-PSD](03-ACERVO-PSD/README.md) | Inventário e status do acervo de arquivos PSD (54 arquivos) |
-| [04-IA](04-IA/README.md) | Notas sobre modelos de IA, segmentação e treinamento |
-| [05-RELEASES](05-RELEASES/README.md) | Histórico de lançamentos e notas de versão |
+O ZIP principal do projeto está atualmente na raiz do repositório:
+[MangaCut_Studio_V12_4_TRANSFORM_TOOLS_FIX.zip](MangaCut_Studio_V12_4_TRANSFORM_TOOLS_FIX.zip)
 
 ---
 
-## Testes
+## Navegação
 
-### Resultados de Testes (V12.4)
+- [01-PROJETO](01-PROJETO/README.md)
+- [02-DOCUMENTACAO](02-DOCUMENTACAO/README.md)
+- [03-ACERVO-PSD](03-ACERVO-PSD/README.md)
+- [04-REFERENCIAS](04-REFERENCIAS/README.md)
+- [05-CODIGO-FONTE](05-CODIGO-FONTE/README.md)
+- [06-TESTES](06-TESTES/README.md)
 
-| Teste | Resultado |
-|-------|-----------|
-| Sintaxe de 5 scripts | ✅ PASS |
-| Transformação geométrica | ✅ PASS |
-| Fixture PSD com 1501 camadas e 2 grupos | ✅ PASS |
-| Fixture Grayscale | ✅ PASS |
-| 54 imports de PSD | ✅ PASS |
-| 5 round-trips individuais | ✅ PASS |
-| Teste interativo completo no navegador | ❌ NÃO EXECUTADO |
+---
+
+## Arquivos de Suporte
+
+- [MangaCut_Codex_Handoff_Completo.md](MangaCut_Codex_Handoff_Completo.md)
+- [AI_STATUS_E_TREINAMENTO.md](AI_STATUS_E_TREINAMENTO.md)
+- [PSD_54_INVENTARIO.csv](PSD_54_INVENTARIO.csv)
+- [PSD_54_MANIFEST_SHA256.json](PSD_54_MANIFEST_SHA256.json)
+- [CHECKSUMS_SHA256.txt](CHECKSUMS_SHA256.txt)
+- [README_ENVIO_CODEX.md](README_ENVIO_CODEX.md)
+
+---
+
+## Matriz de Testes
+
+- **5 scripts — sintaxe:** PASS
+- **Transform geometry:** PASS
+- **PSD synthetic fixture (1501 camadas / 2 grupos):** PASS
+- **Grayscale fixture:** PASS
+- **54 imports PSD:** PASS
+- **5 round-trips individuais:** PASS
+- **Teste interativo completo no navegador:** NÃO EXECUTADO
+
+> **Nota:** Os 54 arquivos representam *imports* PSD, e não 54 round-trips.
 
 ---
 
 ## Limitações Conhecidas
 
-- **Máscaras independentes do PSD:** O escritor de PSD não preserva completamente as máscaras independentes por camada.
-- **Pixels fora do canvas:** Pixels fora dos limites do canvas podem ser recortados durante o processamento.
-- **Memória por camada:** Necessário trabalho de alta prioridade para full-canvas-per-layer.
-- **Modos de mesclagem:** Suporte limitado a blend modes de grupo, pass-through e ICC/unknown.
+- Máscaras PSD independentes não são totalmente preservadas.
+- Pixels fora da área da tela podem ser recortados.
+- **Prioridade alta pendente:** memória plena por camada (tela inteira), blend/grupo de camadas (pass-through), canais/metadata/ICC do PSD, modos de mesclagem desconhecidos.
 
 ---
 
-## Trabalho de Alta Prioridade
+## Status PSD
 
-1. Memória por camada (full-canvas-per-layer)
-2. Blend modes de grupo e pass-through
-3. Canais/ICC/metadata de PSD
-4. Modos de mesclagem desconhecidos
-
----
-
-## Status do Acervo PSD
-
-- **54 PSDs:** Arquivo de teste PSD, **não** um conjunto de dados supervisionado.
-- **3 arquivos ZIP do acervo PSD:** Não estão presentes no repositório. Apenas artefatos de inventário e checksum existem.
-
----
-
-## Status de Treinamento de IA
-
-- **Modelo integrado:** SkyTNT Anime Segmentation / ISNet via ONNX Runtime e FastAPI.
-- **Treinamento/Fine-tuning:** **Nenhum treinamento ou fine-tuning foi executado.** Os modelos são utilizados em seu estado original (zero-shot).
-- Consulte [AI_STATUS_E_TREINAMENTO.md](AI_STATUS_E_TREINAMENTO.md) para mais detalhes.
-
----
-
-## Notas sobre os 39 Painéis de Referência
-
-- Os **39 painéis de referência** não são máscaras anotadas — são painéis de referência de imagem.
+- Inventário contém **54 arquivos** com tamanho total de **1.056.437.472 bytes (~0,984 GiB)**.
+- Os três ZIPs PSD separados não estão presentes no repositório.
+- **39 painéis de referência visual** ão são máscaras anotadas.
+- Nenhuma execução de fine-tuning/treinamento foi realizada.
 
 ---
 
 ## Créditos
 
-- **Projeto por:** [@edymbk](https://github.com/edymbk)
-- **Documentação e assistência em IA:** E.D.I.T.H. (assistente de IA de edymbk)
+Projeto @edymbk. Documentação e assistência por **E.D.I.T.H.**
 
-Os créditos de dependências de terceiros e licenças devem ser preservados conforme os arquivos originais do projeto.
-
----
-
-## Arquivos Raiz
-
-| Arquivo | Descrição |
-|---------|-----------|
-| [README.md](README.md) | Visão geral do projeto (este arquivo) |
-| [README_ENVIO_CODEX.md](README_ENVIO_CODEX.md) | Notas de envio para Codex |
-| [MangaCut_Codex_Handoff_Completo.md](MangaCut_Codex_Handoff_Completo.md) | Documentação de handoff para Codex |
-| [AI_STATUS_E_TREINAMENTO.md](AI_STATUS_E_TREINAMENTO.md) | Status de treinamento de modelos de IA |
-| [CHECKSUMS_SHA256.txt](CHECKSUMS_SHA256.txt) | Somas de verificação SHA-256 dos artefatos |
-| [PSD_54_INVENTARIO.csv](PSD_54_INVENTARIO.csv) | Inventário CSV dos 54 arquivos PSD |
-| [PSD_54_MANIFEST_SHA256.json](PSD_54_MANIFEST_SHA256.json) | Manifesto JSON com checksums dos PSDs |
-| [MangaCut_Studio_V12_4_TRANSFORM_TOOLS_FIX.zip](MangaCut_Studio_V12_4_TRANSFORM_TOOLS_FIX.zip) | ZIP das correções de Transform Tools |
+**Reuso:** Solicita-se reter a atribuição "MangaCut Studio" e apontar para o repositório original
+https://github.com/samueloliveira2fg-collab/MangaCut-Studio-V12.4.
+As obrigações legais dependem da licença aplicável; preservem avisos de licença de terceiros e não implicem auditoria de licença.
