@@ -1,62 +1,69 @@
-# Histórico de Versões do MangaCut Studio
-
-Este documento registra o histórico de versões e mudanças do MangaCut Studio, com ênfase na versão atual V12.4.
+# Registro da Versão — MangaCut Studio V12.4
 
 ---
 
-## Versão Atual: V12.4 — Transform Tools Fix
-
-**Status:** Estável
-
-### Resumo das Alterações
-
-Esta versão focou em correções das ferramentas de transformação geométrica e na integração com modelos de segmentação de anime via IA.
-
-### Detalhamento
-
-- **Transform Tools Fix:** Correção de bugs nas ferramentas de rotação, escalonamento, espelhamento e distorção de camadas.
-- **Integração com IA:** Implementação do suporte a segmentação de anime usando SkyTNT Anime Segmentation / ISNet via ONNX Runtime e FastAPI.
-- **Processamento PSD:** Melhorias na leitura de arquivos PSD com suporte a múltiplas camadas e grupos.
-- **Pipeline de Testes:** Criação de testes automatizados para verificação de 54 arquivos PSD, syntax checking de scripts, e round-trips de arquivos.
+## Versão V12.4 — Transform Tools Fix
 
 ---
 
-## Histórico Anterior
+### Corrigido: Coordenadas de ponteiro em ferramentas de transformação
 
-### Versões Anteriores ao V12.4
+As coordenadas dos ponteiros foram convertidas do espaço de tela para o espaço local da camada, utilizando a **transformação inversa** para:
 
-O projeto MangaCut Studio evoluiu desde sua concepção por [@edymbk](https://github.com/edymbk) como uma ferramenta de edição de imagens voltada para animação de mangá. As versões anteriores focaram na base de processamento de imagens e estrutura de camadas.
+- Translação
+- Escalonamento
+- Rotação
+- Espelhamento
 
-> **Nota:** Detalhes das versões anteriores ao V12.4 podem ser consultados no arquivo [MangaCut_Codex_Handoff_Completo.md](../MangaCut_Codex_Handoff_Completo.md).
+#### Mapeamento por Ferramenta
 
----
+- **Object Selection:** mapeia o retângulo visível em um quadrilátero no espaço de coordenadas da camada.
+- **Pincel (Brush):** segue as transformações da camada.
+- **Borracha (Eraser):** segue as transformações da camada.
+- **Restaurar (Restore):** segue as transformações da camada.
+- **Varinha (Wand):** segue as transformações da camada.
+- **Contador de cores (Eyedropper):** segue as transformações da camada.
+- **Seleção rápida (Quick Selection):** segue as transformações da camada.
+- **Pré-visualização de máscara (Mask Preview):** segue as transformações da camada.
+- **Contorno de seleção (Selection Outline):** segue as transformações da camada.
 
-## Status de Treinamento de IA
-
-A partir do V12.4, o projeto integra modelos de IA pré-treinados para segmentação de anime.
-
-- **Modelo usado:** SkyTNT Anime Segmentation / ISNet
-- **Formato:** ONNX Runtime
-- **API:** FastAPI para inferência
-- **Treinamento:** **Nenhum treinamento ou fine-tuning foi executado.** Os modelos são utilizados em seu estado original (zero-shot).
-- Consulte também [AI_STATUS_E_TREINAMENTO.md](../AI_STATUS_E_TREINAMENTO.md) para mais detalhes.
-
----
-
-## Notas sobre a Versão V12.4
-
-| Aspecto | Status |
-|---------|--------|
-| Transform Tools | Corrigidos |
-| Integração IA (ISNet) | Implementada |
-| Suporte PSD (leitura) | Funcional |
-| Suporte PSD (escrita) | Parcial (ver [Limitações](LIMITACOES-E-PENDENCIAS.md)) |
-| Treinamento de modelos | Não realizado |
-| Testes automatizados | Parciais (ver [Funcionalidades e Estado](FUNCIONALIDADES-E-ESTADO.md)) |
+> **Nota:** Estas são mudanças documentadas da versão V12.4 e não testes executados nesta revisão.
 
 ---
 
-## Créditos de Documentação
+### Resumo de Testes
 
-- **Projeto:** [@edymbk](https://github.com/edymbk)
-- **Documentação e assistência em IA:** E.D.I.T.H. (assistente de IA de edymbk)
+| Teste | Status |
+|-------|--------|
+| **5 scripts — sintaxe** | PASS |
+| **Transform geometry** | PASS |
+| **PSD synthetic fixture (1501 camadas / 2 grupos)** | PASS |
+| **Grayscale fixture** | PASS |
+| **54 imports PSD** | PASS |
+| **5 round-trips individuais** | PASS |
+| **Teste interativo completo no navegador** | NÃO EXECUTADO |
+
+> **Nota:** Os 54 arquivos representam *imports* PSD, não 54 round-trips. Os 5 round-trips individuais são distintos.
+
+---
+
+### Limitações PSD Conhecidas
+
+- Máscaras PSD independentes não são totalmente preservadas.
+- Pixels fora da área da tela podem ser recortados.
+- **Prioridade alta pendente:** memória plena por camada (tela inteira), blend/grupo de camadas (pass-through), canais/metadata/ICC do PSD, modos de mesclagem desconhecidos.
+
+---
+
+### Status PSD
+
+- Inventário: **54 arquivos**, total **1.056.437.472 bytes (~0,984 GiB)**.
+- Três ZIPs PSD separados não estão presentes no repositório.
+- **39 painéis de referência visual** não são máscaras anotadas.
+- Nenhuma execução de fine-tuning/treinamento foi realizada.
+
+---
+
+### Créditos
+
+Projeto @edymbk. Documentação e assistência por **E.D.I.T.H.**
